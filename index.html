@@ -1,96 +1,423 @@
-          <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaan Speedometer - Premium Catalog</title>
+    <title>Shaan Speedometer | Premium Digital Consoles</title>
     <style>
-        :root { --primary-color: #ff6a00; --secondary-color: #25D366; --bg-dark: #0f0f12; --card-bg: #1a1a24; --text-light: #ffffff; --text-muted: #a0a0b0; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
-        header { background: linear-gradient(135deg, #161623 0%, #08080a 100%); border-bottom: 3px solid var(--primary-color); padding: 50px 20px; text-align: center; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .owners-section { background: #15151e; margin: 30px auto; max-width: 1100px; border-radius: 15px; padding: 25px; border-left: 5px solid var(--primary-color); }
-        .features-grid { display: flex; flex-wrap: wrap; gap: 20px; margin: 40px 0; }
-        .feature-card { flex: 1; min-width: 280px; background: #1a1a24; border: 1px solid #252535; border-radius: 12px; padding: 25px; text-align: center; }
-        .product-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px; }
-        .product-card { background-color: var(--card-bg); border: 1px solid #252535; border-radius: 12px; width: 320px; padding: 20px; }
-        .btn { display: block; width: 100%; background-color: var(--secondary-color); color: white; text-align: center; padding: 12px; text-decoration: none; font-weight: bold; border-radius: 8px; margin-top: 15px; }
-        .price-value { font-size: 1.5rem; font-weight: 800; color: var(--secondary-color); }
+        :root {
+            --primary: #ff6a00;
+            --primary-glow: rgba(255, 106, 0, 0.2);
+            --whatsapp: #25D366;
+            --bg-dark: #09090e;
+            --card-bg: #12121c;
+            --border-color: #222235;
+            --text-main: #ffffff;
+            --text-muted: #8e8ea8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Design */
+        header {
+            background: radial-gradient(circle at top, #1c1b2d 0%, var(--bg-dark) 70%);
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        header h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        header p {
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Owners Badge */
+        .owners-section {
+            background: linear-gradient(90deg, #12121c, #1a1a2e);
+            border-left: 4px solid var(--primary);
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Category Filter Tabs */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: #151522;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px var(--primary-glow);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(255, 106, 0, 0.05);
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .product-tag {
+            display: inline-block;
+            background: rgba(255, 106, 0, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .price-box {
+            margin: 15px 0;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #25D366;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        /* Buttons */
+        .btn-details {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-details:hover {
+            background: #1c1b2d;
+        }
+
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            opacity: 0.9;
+        }
+
+        /* Modal (Popup) Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #12121c;
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255,106,0,0.15);
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .modal-body h3 {
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .spec-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .spec-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #222235;
+        }
+
+        .spec-list li span:first-child {
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>SHAAN <span>SPEEDOMETER</span></h1>
-        <p>Premium Speedometers for All Bikes & Scooties</p>
+        <p>Premium Digital Speedometers & Consoles</p>
     </header>
 
     <div class="container">
-        <!-- Management -->
+        <!-- Management Section -->
         <div class="owners-section">
-            <h3>Management: Idrees Ahmad | Farhan Ahmad | Faizan</h3>
+            Management: Idrees Ahmad | Farhan Ahmad | Faizan
         </div>
 
-        <!-- Features -->
-        <div class="features-grid">
-            <div class="feature-card"><h3>All Brands Available</h3><p>Major bike and scooty meters available.</p></div>
-            <div class="feature-card"><h3>New & Refurbished</h3><p>Multiple options according to your budget.</p></div>
-            <div class="feature-card"><h3>All India Courier</h3><p>Safe delivery from Moradabad to all India.</p></div>
+        <!-- Filter Tabs -->
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterCategory('all')">All Models</button>
+            <button class="filter-btn" onclick="filterCategory('bike')">Bikes</button>
+            <button class="filter-btn" onclick="filterCategory('scooty')">Scooties</button>
         </div>
 
-        <!-- Products -->
+        <!-- Products Grid -->
         <div class="product-grid">
+
             <!-- 1. Splendor Xtec -->
-            <div class="product-card">
-                <h3>Splendor Xtec</h3>
-                <p>Digital console.</p>
-                <div class="price-container">
-                    <p>Price: <span class="price-value">₹1,450</span></p> <!-- PRICE CHANGE HERE -->
+            <div class="product-card" data-category="bike">
+                <div class="product-info">
+                    <span class="product-tag">Hero</span>
+                    <h3>Splendor Plus Xtec</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Full Digital Bluetooth Console</p>
+                    <div class="price-box">₹1,450</div> <!-- EDIT PRICE HERE -->
                 </div>
-                <a href="https://wa.me/919999999999?text=Interested in Splendor Xtec" class="btn">Order on WhatsApp</a>
+                <div class="card-actions">
+                    <button class="btn-details" onclick="openDetails('Splendor Plus Xtec', '₹1,450', 'Digital', '100% Genuine O.E.M', 'Tested & Working')">View Details</button>
+                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Splendor Plus Xtec meter." class="btn-whatsapp">Order on WhatsApp</a>
+                </div>
             </div>
 
             <!-- 2. Passion Pro -->
-            <div class="product-card">
-                <h3>Passion Pro</h3>
-                <p>Classic reliable meter.</p>
-                <div class="price-container">
-                    <p>Price: <span class="price-value">₹950</span></p> <!-- PRICE CHANGE HERE -->
+            <div class="product-card" data-category="bike">
+                <div class="product-info">
+                    <span class="product-tag">Hero</span>
+                    <h3>Passion Pro</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Analog-Digital Combo Meter</p>
+                    <div class="price-box">₹950</div> <!-- EDIT PRICE HERE -->
                 </div>
-                <a href="https://wa.me/919999999999?text=Interested in Passion Pro" class="btn">Order on WhatsApp</a>
+                <div class="card-actions">
+                    <button class="btn-details" onclick="openDetails('Passion Pro', '₹950', 'Semi-Digital', 'Original Fitting', 'Tested & Working')">View Details</button>
+                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Passion Pro meter." class="btn-whatsapp">Order on WhatsApp</a>
+                </div>
             </div>
 
             <!-- 3. Destini -->
-            <div class="product-card">
-                <h3>Destini</h3>
-                <p>Digital/Analog mix.</p>
-                <div class="price-container">
-                    <p>Price: <span class="price-value">₹1,100</span></p> <!-- PRICE CHANGE HERE -->
+            <div class="product-card" data-category="scooty">
+                <div class="product-info">
+                    <span class="product-tag">Scooty</span>
+                    <h3>Hero Destini</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Elegant Digital-Analog Combo</p>
+                    <div class="price-box">₹1,100</div> <!-- EDIT PRICE HERE -->
                 </div>
-                <a href="https://wa.me/919999999999?text=Interested in Destini" class="btn">Order on WhatsApp</a>
+                <div class="card-actions">
+                    <button class="btn-details" onclick="openDetails('Hero Destini', '₹1,100', 'Semi-Digital', 'Premium Grade', 'Tested & Working')">View Details</button>
+                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Hero Destini meter." class="btn-whatsapp">Order on WhatsApp</a>
+                </div>
             </div>
 
             <!-- 4. Apache 4V -->
-            <div class="product-card">
-                <h3>Apache 4V</h3>
-                <p>High-tech console.</p>
-                <div class="price-container">
-                    <p>Price: <span class="price-value">₹2,800</span></p> <!-- PRICE CHANGE HERE -->
+            <div class="product-card" data-category="bike">
+                <div class="product-info">
+                    <span class="product-tag">TVS</span>
+                    <h3>Apache RTR 4V</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">High-Tech Racing Console</p>
+                    <div class="price-box">₹2,800</div> <!-- EDIT PRICE HERE -->
                 </div>
-                <a href="https://wa.me/919999999999?text=Interested in Apache 4V" class="btn">Order on WhatsApp</a>
+                <div class="card-actions">
+                    <button class="btn-details" onclick="openDetails('Apache RTR 4V', '₹2,800', 'Full Digital (LCD)', 'Top Quality Refurbished', 'Fully Calibrated')">View Details</button>
+                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Apache RTR 4V meter." class="btn-whatsapp">Order on WhatsApp</a>
+                </div>
             </div>
 
             <!-- 5. Activa 6G -->
-            <div class="product-card">
-                <h3>Activa 6G</h3>
-                <p>Original fitting.</p>
-                <div class="price-container">
-                    <p>Price: <span class="price-value">₹900</span></p> <!-- PRICE CHANGE HERE -->
+            <div class="product-card" data-category="scooty">
+                <div class="product-info">
+                    <span class="product-tag">Scooty</span>
+                    <h3>Honda Activa 6G</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Classic Analog Dash Assembly</p>
+                    <div class="price-box">₹900</div> <!-- EDIT PRICE HERE -->
                 </div>
-                <a href="https://wa.me/919999999999?text=Interested in Activa 6G" class="btn">Order on WhatsApp</a>
+                <div class="card-actions">
+                    <button class="btn-details" onclick="openDetails('Honda Activa 6G', '₹900', 'Analog', '100% Matching Fitting', 'Brand New / Refurbished')">View Details</button>
+                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Honda Activa 6G meter." class="btn-whatsapp">Order on WhatsApp</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Details Modal (Popup Window) -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDetails()">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Data dynamically inserted by JS -->
             </div>
         </div>
     </div>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Category Filter Logic
+        function filterCategory(category) {
+            // Update active button design
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter Products
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'flex';
+                } else {
+                    if (card.getAttribute('data-category') === category) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Details Popup Logic
+        function openDetails(name, price, type, quality, status) {
+            const modal = document.getElementById('detailsModal');
+            const body = document.getElementById('modalBody');
+            
+            body.innerHTML = `
+                <h3>${name}</h3>
+                <ul class="spec-list">
+                    <li><span>Price</span><strong style="color: #25D366;">${price}</strong></li>
+                    <li><span>Display Type</span><span>${type}</span></li>
+                    <li><span>Quality</span><span>${quality}</span></li>
+                    <li><span>Condition</span><span>${status}</span></li>
+                    <li><span>Delivery</span><span>All India Courier Available</span></li>
+                </ul>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 15px; text-align: center;">
+                    *Prices may vary depending on stock availability.
+                </p>
+            `;
+            modal.style.display = 'flex';
+        }
+
+        function closeDetails() {
+            document.getElementById('detailsModal').style.display = 'none';
+        }
+
+        // Close modal if clicked outside of content
+        window.onclick = function(event) {
+            const modal = document.getElementById('detailsModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
