@@ -1,467 +1,96 @@
-<!DOCTYPE html>
+          <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaan Speedometer - Premium Bike & Scooty Speedometers</title>
+    <title>Shaan Speedometer - Premium Catalog</title>
     <style>
-        :root {
-            --primary-color: #ff6a00; /* Neon Orange Accent */
-            --bg-dark: #0f0f12;       /* Deep Matte Black */
-            --card-bg: #1a1a24;       /* Dark Grey-Blue Card */
-            --text-light: #ffffff;
-            --text-muted: #a0a0b0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Top Header Navigation */
-        header {
-            background: linear-gradient(135deg, #161623 0%, #08080a 100%);
-            border-bottom: 2px solid var(--primary-color);
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .logo-area h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-transform: uppercase;
-        }
-
-        .logo-area h1 span {
-            color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
-        }
-
-        .logo-area p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-top: 10px;
-            letter-spacing: 1px;
-        }
-
-        /* Proprietor Section */
-        .owners-section {
-            background: #15151e;
-            margin: 30px auto;
-            max-width: 1100px;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-            border-left: 5px solid var(--primary-color);
-        }
-
-        .owners-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            color: var(--primary-color);
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        .owners-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .main-proprietor {
-            flex: 2;
-            min-width: 280px;
-        }
-
-        .main-proprietor h2 {
-            font-size: 1.8rem;
-            color: #ffffff;
-        }
-
-        .main-proprietor p {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .co-owners {
-            flex: 3;
-            min-width: 280px;
-            display: flex;
-            gap: 20px;
-            border-left: 1px solid #2e2e3e;
-            padding-left: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .co-owners {
-                border-left: none;
-                padding-left: 0;
-                border-top: 1px solid #2e2e3e;
-                padding-top: 20px;
-            }
-        }
-
-        .owner-card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px 20px;
-            border-radius: 8px;
-            width: 100%;
-        }
-
-        .owner-card h3 {
-            font-size: 1.1rem;
-            color: #ffffff;
-        }
-
-        .owner-card p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin: 50px 0 25px 0;
-            position: relative;
-            color: #ffffff;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background-color: var(--primary-color);
-            margin: 10px auto 0 auto;
-            border-radius: 2px;
-        }
-
-        /* Product Grid & Cards */
-        .product-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .product-card {
-            background-color: var(--card-bg);
-            border: 1px solid #252535;
-            border-radius: 12px;
-            overflow: hidden;
-            width: 320px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 106, 0, 0.2);
-            border-color: var(--primary-color);
-        }
-
-        .product-img-container {
-            position: relative;
-            background-color: #0b0b0f;
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product-card img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-        }
-
-        .badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .badge-scooty {
-            background-color: #00bcd4; /* Cyan blue for Scooty */
-        }
-
-        .product-info {
-            padding: 20px;
-            text-align: left;
-        }
-
-        .product-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        .product-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            height: 40px;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-
-        /* Price Tag Container */
-        .price-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 15px;
-            border-top: 1px solid #2e2e3e;
-            padding-top: 15px;
-        }
-
-        .price-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .price-value {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #25D366; /* Green for pricing */
-        }
-
-        /* Order Button styling */
-        .btn {
-            display: block;
-            width: 100%;
-            background-color: #25D366; /* WhatsApp Green */
-            color: white;
-            text-align: center;
-            padding: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            margin-top: 15px;
-            transition: background 0.2s ease;
-            font-size: 1rem;
-        }
-
-        .btn:hover {
-            background-color: #1ebd59;
-        }
-
-        /* Contact Details Footer */
-        footer {
-            background-color: #08080a;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 60px;
-            border-top: 1px solid #222;
-        }
-
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .whatsapp-disclaimer {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 10px;
-        }
+        :root { --primary-color: #ff6a00; --secondary-color: #25D366; --bg-dark: #0f0f12; --card-bg: #1a1a24; --text-light: #ffffff; --text-muted: #a0a0b0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
+        header { background: linear-gradient(135deg, #161623 0%, #08080a 100%); border-bottom: 3px solid var(--primary-color); padding: 50px 20px; text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .owners-section { background: #15151e; margin: 30px auto; max-width: 1100px; border-radius: 15px; padding: 25px; border-left: 5px solid var(--primary-color); }
+        .features-grid { display: flex; flex-wrap: wrap; gap: 20px; margin: 40px 0; }
+        .feature-card { flex: 1; min-width: 280px; background: #1a1a24; border: 1px solid #252535; border-radius: 12px; padding: 25px; text-align: center; }
+        .product-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px; }
+        .product-card { background-color: var(--card-bg); border: 1px solid #252535; border-radius: 12px; width: 320px; padding: 20px; }
+        .btn { display: block; width: 100%; background-color: var(--secondary-color); color: white; text-align: center; padding: 12px; text-decoration: none; font-weight: bold; border-radius: 8px; margin-top: 15px; }
+        .price-value { font-size: 1.5rem; font-weight: 800; color: var(--secondary-color); }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
     <header>
-        <div class="logo-area">
-            <h1>SHAAN <span>SPEEDOMETER</span></h1>
-            <p>High-Quality Speedometers for All Bikes & Scooties</p>
-        </div>
+        <h1>SHAAN <span>SPEEDOMETER</span></h1>
+        <p>Premium Speedometers for All Bikes & Scooties</p>
     </header>
 
     <div class="container">
-
-        <!-- Proprietor Details Panel -->
+        <!-- Management -->
         <div class="owners-section">
-            <div class="owners-title">Management / Proprietors</div>
-            <div class="owners-grid">
-                <!-- Chief Proprietor (Idrees Ahmad) -->
-                <div class="main-proprietor">
-                    <p>Chief Proprietor</p>
-                    <h2>Idrees Ahmad</h2>
-                </div>
-                <!-- Co-Owners (Farhan & Faizan) -->
-                <div class="co-owners">
-                    <div class="owner-card">
-                        <p>Partner</p>
-                        <h3>Farhan Ahmad</h3>
-                    </div>
-                    <div class="owner-card">
-                        <p>Partner</p>
-                        <h3>Faizan</h3>
-                    </div>
-                </div>
-            </div>
+            <h3>Management: Idrees Ahmad | Farhan Ahmad | Faizan</h3>
         </div>
 
-        <!-- ================= BIKE SPEEDOMETERS SECTION ================= -->
-        <div class="section-title">Bike Speedometers</div>
-        
+        <!-- Features -->
+        <div class="features-grid">
+            <div class="feature-card"><h3>All Brands Available</h3><p>Major bike and scooty meters available.</p></div>
+            <div class="feature-card"><h3>New & Refurbished</h3><p>Multiple options according to your budget.</p></div>
+            <div class="feature-card"><h3>All India Courier</h3><p>Safe delivery from Moradabad to all India.</p></div>
+        </div>
+
+        <!-- Products -->
         <div class="product-grid">
-
-            <!-- Bike Product 1 -->
+            <!-- 1. Splendor Xtec -->
             <div class="product-card">
-                <div class="product-img-container">
-                    <span class="badge">Bike</span>
-                    <img src="https://via.placeholder.com/320x220/1a1a24/ffffff?text=Splendor+Speedometer" alt="Splendor Speedometer">
+                <h3>Splendor Xtec</h3>
+                <p>Digital console.</p>
+                <div class="price-container">
+                    <p>Price: <span class="price-value">₹1,450</span></p> <!-- PRICE CHANGE HERE -->
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Hero Splendor Digital</h3>
-                    <p class="product-desc">Genuine digital speedometer with elegant amber backlight.</p>
-                    
-                    <div class="price-container">
-                        <span class="price-label">Best Rate:</span>
-                        <span class="price-value">₹1,250</span>
-                    </div>
-                    <a href="https://wa.me/919999999999?text=Hi,%20I%20am%20interested%20in%20Splendor%20Digital%20Speedometer" target="_blank" class="btn">🔑 Order on WhatsApp</a>
-                </div>
+                <a href="https://wa.me/919999999999?text=Interested in Splendor Xtec" class="btn">Order on WhatsApp</a>
             </div>
 
-            <!-- Bike Product 2 -->
+            <!-- 2. Passion Pro -->
             <div class="product-card">
-                <div class="product-img-container">
-                    <span class="badge">Bike</span>
-                    <img src="https://via.placeholder.com/320x220/1a1a24/ffffff?text=Pulsar+Speedometer" alt="Pulsar Speedometer">
+                <h3>Passion Pro</h3>
+                <p>Classic reliable meter.</p>
+                <div class="price-container">
+                    <p>Price: <span class="price-value">₹950</span></p> <!-- PRICE CHANGE HERE -->
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Pulsar 150 DTS-i</h3>
-                    <p class="product-desc">Premium digital console with RPM indicator and blue backlight.</p>
-                    
-                    <div class="price-container">
-                        <span class="price-label">Best Rate:</span>
-                        <span class="price-value">₹1,850</span>
-                    </div>
-                    <a href="https://wa.me/919999999999?text=Hi,%20I%20am%20interested%20in%20Pulsar%20Speedometer" target="_blank" class="btn">🔑 Order on WhatsApp</a>
-                </div>
+                <a href="https://wa.me/919999999999?text=Interested in Passion Pro" class="btn">Order on WhatsApp</a>
             </div>
 
-            <!-- Bike Product 3 -->
+            <!-- 3. Destini -->
             <div class="product-card">
-                <div class="product-img-container">
-                    <span class="badge">Bike</span>
-                    <img src="https://via.placeholder.com/320x220/1a1a24/ffffff?text=HF+Deluxe+Speedometer" alt="HF Deluxe Speedometer">
+                <h3>Destini</h3>
+                <p>Digital/Analog mix.</p>
+                <div class="price-container">
+                    <p>Price: <span class="price-value">₹1,100</span></p> <!-- PRICE CHANGE HERE -->
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">HF Deluxe Analog</h3>
-                    <p class="product-desc">Super clear analog scale with fuel indicator. High durability.</p>
-                    
-                    <div class="price-container">
-                        <span class="price-label">Best Rate:</span>
-                        <span class="price-value">₹750</span>
-                    </div>
-                    <a href="https://wa.me/919999999999?text=Hi,%20I%20am%20interested%20in%20HF%20Deluxe%20Speedometer" target="_blank" class="btn">🔑 Order on WhatsApp</a>
-                </div>
+                <a href="https://wa.me/919999999999?text=Interested in Destini" class="btn">Order on WhatsApp</a>
             </div>
 
+            <!-- 4. Apache 4V -->
+            <div class="product-card">
+                <h3>Apache 4V</h3>
+                <p>High-tech console.</p>
+                <div class="price-container">
+                    <p>Price: <span class="price-value">₹2,800</span></p> <!-- PRICE CHANGE HERE -->
+                </div>
+                <a href="https://wa.me/919999999999?text=Interested in Apache 4V" class="btn">Order on WhatsApp</a>
+            </div>
+
+            <!-- 5. Activa 6G -->
+            <div class="product-card">
+                <h3>Activa 6G</h3>
+                <p>Original fitting.</p>
+                <div class="price-container">
+                    <p>Price: <span class="price-value">₹900</span></p> <!-- PRICE CHANGE HERE -->
+                </div>
+                <a href="https://wa.me/919999999999?text=Interested in Activa 6G" class="btn">Order on WhatsApp</a>
+            </div>
         </div>
-
-
-        <!-- ================= SCOOTY SPEEDOMETERS SECTION ================= -->
-        <div class="section-title">Scooty Speedometers</div>
-
-        <div class="product-grid">
-
-            <!-- Scooty Product 1 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="badge badge-scooty">Scooty</span>
-                    <img src="https://via.placeholder.com/320x220/1a1a24/ffffff?text=Activa+Speedometer" alt="Activa Speedometer">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Activa 6G Analog</h3>
-                    <p class="product-desc">Original OEM replacement for Honda Activa 6G. Perfect fitting.</p>
-                    
-                    <div class="price-container">
-                        <span class="price-label">Best Rate:</span>
-                        <span class="price-value">₹950</span>
-                    </div>
-                    <a href="https://wa.me/919999999999?text=Hi,%20I%20am%20interested%20in%20Activa%206G%20Speedometer" target="_blank" class="btn">🔑 Order on WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- Scooty Product 2 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="badge badge-scooty">Scooty</span>
-                    <img src="https://via.placeholder.com/320x220/1a1a24/ffffff?text=Jupiter+Speedometer" alt="Jupiter Speedometer">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">TVS Jupiter Classic</h3>
-                    <p class="product-desc">Smart analog design with eco/power mode indicator lamps.</p>
-                    
-                    <div class="price-container">
-                        <span class="price-label">Best Rate:</span>
-                        <span class="price-value">₹1,100</span>
-                    </div>
-                    <a href="https://wa.me/919999999999?text=Hi,%20I%20am%20interested%20in%20Jupiter%20Speedometer" target="_blank" class="btn">🔑 Order on WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- Scooty Product 3 -->
-            <div class="product-card">
-                <div class="product-img-container">
-                    <span class="badge badge-scooty">Scooty</span>
-                    <img src="https://via.placeholder.com/320x220/1a1a24/ffffff?text=Ntorq+Speedometer" alt="Ntorq Speedometer">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">TVS Ntorq Digital</h3>
-                    <p class="product-desc">Bluetooth connected digital console with lap timer.</p>
-                    
-                    <div class="price-container">
-                        <span class="price-label">Best Rate:</span>
-                        <span class="price-value">₹2,400</span>
-                    </div>
-                    <a href="https://wa.me/919999999999?text=Hi,%20I%20am%20interested%20in%20Ntorq%20Speedometer" target="_blank" class="btn">🔑 Order on WhatsApp</a>
-                </div>
-            </div>
-
-        </div>
-
     </div>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>© 2026 Shaan Speedometer. All Rights Reserved.</p>
-        <p style="margin-top: 5px; font-size: 0.8rem; color: var(--primary-color);">Under Management of Idrees Ahmad, Farhan Ahmad & Faizan</p>
-        <p class="whatsapp-disclaimer">Prices may vary based on shipping and wholesale requirements.</p>
-    </footer>
-
 </body>
 </html>
