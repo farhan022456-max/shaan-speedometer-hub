@@ -3,419 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaan Speedometer | Premium Digital Consoles</title>
+    <title>Shaan Speedometer | Premium Parts</title>
     <style>
         :root {
-            --primary: #ff6a00;
-            --primary-glow: rgba(255, 106, 0, 0.2);
-            --whatsapp: #25D366;
-            --bg-dark: #09090e;
-            --card-bg: #12121c;
-            --border-color: #222235;
-            --text-main: #ffffff;
-            --text-muted: #8e8ea8;
+            --primary: #0066ff;
+            --dark: #1a1a1a;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--light-bg); margin: 0; padding: 0; }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* Header */
+        .header { background: #fff; padding: 20px; text-align: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary); margin-bottom: 15px; }
 
-        /* Header Design */
-        header {
-            background: radial-gradient(circle at top, #1c1b2d 0%, var(--bg-dark) 70%);
-            padding: 60px 20px 30px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        header h1 span {
-            color: var(--primary);
-            text-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        header p {
-            color: var(--text-muted);
-            margin-top: 10px;
-            font-size: 1rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Owners Badge */
-        .owners-section {
-            background: linear-gradient(90deg, #12121c, #1a1a2e);
-            border-left: 4px solid var(--primary);
-            padding: 15px 25px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            text-align: center;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* Category Filter Tabs */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .filter-btn {
-            background: #151522;
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 5px 15px var(--primary-glow);
-        }
+        /* Search & Filter */
+        .controls { max-width: 800px; margin: 20px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 15px; }
+        #searchBox { padding: 12px 20px; border: 1px solid #ddd; border-radius: 30px; width: 100%; outline: none; }
+        .tabs { display: flex; justify-content: center; gap: 10px; }
+        .tab { padding: 8px 20px; border: 1px solid var(--primary); border-radius: 20px; cursor: pointer; color: var(--primary); font-weight: 600; }
+        .tab.active { background: var(--primary); color: #fff; }
 
         /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .product-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(255, 106, 0, 0.05);
-        }
-
-        .product-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-        }
-
-        .product-tag {
-            display: inline-block;
-            background: rgba(255, 106, 0, 0.1);
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .price-box {
-            margin: 15px 0;
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #25D366;
-        }
-
-        .card-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        /* Buttons */
-        .btn-details {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn-details:hover {
-            background: #1c1b2d;
-        }
-
-        .btn-whatsapp {
-            background: var(--whatsapp);
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: opacity 0.3s;
-        }
-
-        .btn-whatsapp:hover {
-            opacity: 0.9;
-        }
-
-        /* Modal (Popup) Styling */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: #12121c;
-            border: 1px solid var(--primary);
-            border-radius: 16px;
-            max-width: 500px;
-            width: 100%;
-            padding: 25px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(255,106,0,0.15);
-            animation: modalSlide 0.3s ease;
-        }
-
-        @keyframes modalSlide {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-
-        .modal-body h3 {
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .spec-list {
-            list-style: none;
-            margin: 15px 0;
-        }
-
-        .spec-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px dashed #222235;
-        }
-
-        .spec-list li span:first-child {
-            color: var(--text-muted);
-        }
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+        .card { background: #fff; padding: 15px; border-radius: 12px; box-shadow: var(--card-shadow); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 180px; object-fit: contain; border-radius: 8px; margin-bottom: 10px; }
+        .card h3 { margin: 10px 0; font-size: 1.1rem; }
+        .price { color: #d32f2f; font-weight: 800; font-size: 1.2rem; }
+        .btn { display: block; width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 10px; text-align: center; text-decoration: none; }
+        .btn-whatsapp { background: #25D366; color: #fff; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>SHAAN <span>SPEEDOMETER</span></h1>
-        <p>Premium Digital Speedometers & Consoles</p>
-    </header>
-
-    <div class="container">
-        <!-- Management Section -->
-        <div class="owners-section">
-            Management: Idrees Ahmad | Farhan Ahmad | Faizan
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterCategory('all')">All Models</button>
-            <button class="filter-btn" onclick="filterCategory('bike')">Bikes</button>
-            <button class="filter-btn" onclick="filterCategory('scooty')">Scooties</button>
-        </div>
-
-        <!-- Products Grid -->
-        <div class="product-grid">
-
-            <!-- 1. Splendor Xtec -->
-            <div class="product-card" data-category="bike">
-                <div class="product-info">
-                    <span class="product-tag">Hero</span>
-                    <h3>Splendor Plus Xtec</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Full Digital Bluetooth Console</p>
-                    <div class="price-box">₹1,450</div> <!-- EDIT PRICE HERE -->
-                </div>
-                <div class="card-actions">
-                    <button class="btn-details" onclick="openDetails('Splendor Plus Xtec', '₹1,450', 'Digital', '100% Genuine O.E.M', 'Tested & Working')">View Details</button>
-                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Splendor Plus Xtec meter." class="btn-whatsapp">Order on WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 2. Passion Pro -->
-            <div class="product-card" data-category="bike">
-                <div class="product-info">
-                    <span class="product-tag">Hero</span>
-                    <h3>Passion Pro</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Analog-Digital Combo Meter</p>
-                    <div class="price-box">₹950</div> <!-- EDIT PRICE HERE -->
-                </div>
-                <div class="card-actions">
-                    <button class="btn-details" onclick="openDetails('Passion Pro', '₹950', 'Semi-Digital', 'Original Fitting', 'Tested & Working')">View Details</button>
-                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Passion Pro meter." class="btn-whatsapp">Order on WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 3. Destini -->
-            <div class="product-card" data-category="scooty">
-                <div class="product-info">
-                    <span class="product-tag">Scooty</span>
-                    <h3>Hero Destini</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Elegant Digital-Analog Combo</p>
-                    <div class="price-box">₹1,100</div> <!-- EDIT PRICE HERE -->
-                </div>
-                <div class="card-actions">
-                    <button class="btn-details" onclick="openDetails('Hero Destini', '₹1,100', 'Semi-Digital', 'Premium Grade', 'Tested & Working')">View Details</button>
-                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Hero Destini meter." class="btn-whatsapp">Order on WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 4. Apache 4V -->
-            <div class="product-card" data-category="bike">
-                <div class="product-info">
-                    <span class="product-tag">TVS</span>
-                    <h3>Apache RTR 4V</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">High-Tech Racing Console</p>
-                    <div class="price-box">₹2,800</div> <!-- EDIT PRICE HERE -->
-                </div>
-                <div class="card-actions">
-                    <button class="btn-details" onclick="openDetails('Apache RTR 4V', '₹2,800', 'Full Digital (LCD)', 'Top Quality Refurbished', 'Fully Calibrated')">View Details</button>
-                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Apache RTR 4V meter." class="btn-whatsapp">Order on WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 5. Activa 6G -->
-            <div class="product-card" data-category="scooty">
-                <div class="product-info">
-                    <span class="product-tag">Scooty</span>
-                    <h3>Honda Activa 6G</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Classic Analog Dash Assembly</p>
-                    <div class="price-box">₹900</div> <!-- EDIT PRICE HERE -->
-                </div>
-                <div class="card-actions">
-                    <button class="btn-details" onclick="openDetails('Honda Activa 6G', '₹900', 'Analog', '100% Matching Fitting', 'Brand New / Refurbished')">View Details</button>
-                    <a href="https://wa.me/919999999999?text=Hello Shaan Speedometer, I am interested in Honda Activa 6G meter." class="btn-whatsapp">Order on WhatsApp</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Details Modal (Popup Window) -->
-    <div class="modal" id="detailsModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeDetails()">&times;</span>
-            <div class="modal-body" id="modalBody">
-                <!-- Data dynamically inserted by JS -->
+    <div class="header">
+        <div class="logo">SHAAN SPEEDOMETER</div>
+        <div class="controls">
+            <input type="text" id="searchBox" placeholder="Search bike model (e.g. Passion)..." onkeyup="filterProducts()">
+            <div class="tabs">
+                <div class="tab active" onclick="setCategory('all', this)">All</div>
+                <div class="tab" onclick="setCategory('bike', this)">Bikes</div>
+                <div class="tab" onclick="setCategory('scooty', this)">Scooty</div>
             </div>
         </div>
     </div>
 
-    <!-- Interactive JavaScript -->
+    <div class="container" id="productGrid">
+        <!-- Products -->
+        <div class="card" data-name="passion pro" data-cat="bike">
+            <img src="https://rukminim2.flixcart.com/image/480/480/jsyyufk0/speedometer/7/n/a/speedometer-for-passion-pro-samday-original-imafee7zzqvbdbhc.jpeg?q=90">
+            <h3>Passion Pro</h3>
+            <div class="price">₹950</div>
+            <a href="https://wa.me/919999999999?text=I want Passion Pro" class="btn btn-whatsapp">Buy on WhatsApp</a>
+        </div>
+
+        <div class="card" data-name="splendor xtec" data-cat="bike">
+            <img src="https://placehold.co/400x300?text=Splendor+Xtec">
+            <h3>Splendor Xtec</h3>
+            <div class="price">₹1,450</div>
+            <a href="#" class="btn btn-whatsapp">Buy on WhatsApp</a>
+        </div>
+
+        <div class="card" data-name="activa 6g" data-cat="scooty">
+            <img src="https://placehold.co/400x300?text=Activa+6G">
+            <h3>Activa 6G</h3>
+            <div class="price">₹900</div>
+            <a href="#" class="btn btn-whatsapp">Buy on WhatsApp</a>
+        </div>
+    </div>
+
     <script>
-        // Category Filter Logic
-        function filterCategory(category) {
-            // Update active button design
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Filter Products
-            const cards = document.querySelectorAll('.product-card');
-            cards.forEach(card => {
-                if (category === 'all') {
-                    card.style.display = 'flex';
-                } else {
-                    if (card.getAttribute('data-category') === category) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                }
-            });
+        // Live Search Filter
+        function filterProducts() {
+            let input = document.getElementById('searchBox').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+            for (let card of cards) {
+                let name = card.getAttribute('data-name');
+                card.style.display = name.includes(input) ? "block" : "none";
+            }
         }
 
-        // Details Popup Logic
-        function openDetails(name, price, type, quality, status) {
-            const modal = document.getElementById('detailsModal');
-            const body = document.getElementById('modalBody');
-            
-            body.innerHTML = `
-                <h3>${name}</h3>
-                <ul class="spec-list">
-                    <li><span>Price</span><strong style="color: #25D366;">${price}</strong></li>
-                    <li><span>Display Type</span><span>${type}</span></li>
-                    <li><span>Quality</span><span>${quality}</span></li>
-                    <li><span>Condition</span><span>${status}</span></li>
-                    <li><span>Delivery</span><span>All India Courier Available</span></li>
-                </ul>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 15px; text-align: center;">
-                    *Prices may vary depending on stock availability.
-                </p>
-            `;
-            modal.style.display = 'flex';
-        }
-
-        function closeDetails() {
-            document.getElementById('detailsModal').style.display = 'none';
-        }
-
-        // Close modal if clicked outside of content
-        window.onclick = function(event) {
-            const modal = document.getElementById('detailsModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
+        // Category Filter
+        function setCategory(cat, el) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            let cards = document.getElementsByClassName('card');
+            for (let card of cards) {
+                if(cat === 'all' || card.getAttribute('data-cat') === cat) card.style.display = "block";
+                else card.style.display = "none";
             }
         }
     </script>
